@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>SDE Demo</title>
+  <style>
+    body{font-family:Arial,Helvetica,sans-serif;background:#f7fbff;margin:0;padding:18px}
+    .wrap{max-width:760px;margin:0 auto}
+    .top{display:flex;justify-content:space-between;align-items:center}
+    .status{font-weight:700;color:#042A5A}
+    form.inline{display:inline-block}
+    .form-row{margin:12px 0}
+    input{padding:8px;border:1px solid #ccc;border-radius:4px;width:100%;box-sizing:border-box}
+    .users>div{padding:8px;border-bottom:1px solid #eee}
+    a.back{display:inline-block;margin-top:12px;color:#0366d6}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <h1 style="margin:0">Sensitive Data Exposure</h1>
+      <div class="status">Status: <%= vulnerable ? 'VULNERABLE' : 'SAFE' %></div>
+    </div>
+
+    <div class="form-row">
+      <form class="inline" method="POST" action="/sde/toggle">
+        <label>
+          <input type="checkbox" name="sde" <%= vulnerable ? 'checked' : '' %> onchange="this.form.submit()"> SDE ENABLED
+        </label>
+      </form>
+    </div>
+
+    <h2 style="margin-bottom:6px">Dodaj korisnika</h2>
+    <form method="POST" action="/sde/add">
+      <div class="form-row"><input name="username" placeholder="username" required></div>
+      <div class="form-row"><input name="password" placeholder="password" required></div>
+      <div class="form-row"><button type="submit">Dodaj</button></div>
+    </form>
+
+    <h2>Korisnici</h2>
+    <div class="users">
+      <% users.forEach(u => { %>
+        <div>
+          <strong><%= u.username %></strong> | Password: <%= u.password %>
+        </div>
+      <% }) %>
+    </div>
+
+    <a class="back" href="/">← Početna</a>
+  </div>
+</body>
+</html>

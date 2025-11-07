@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Web Security Demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { margin: 0; height: 100vh; display: flex; align-items: center; justify-content: center; background-color: #f0f7ff; font-family: Arial, sans-serif; }
+    .container { text-align: center; }
+  .buttons { display: flex; gap: 12px; justify-content: center; }
+  .btn { padding: 12px 24px; border-radius: 8px; text-decoration: none; color: #042A5A; font-weight: 700; display: inline-block; min-width: 180px; text-align: center; background-color: #6FB3FF; }
+  .btn.xss, .btn.sde { background-color: #6FB3FF; }
+    @media (max-width: 600px) { .buttons { flex-direction: column; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="buttons">
+      <a class="btn xss" href="/xss" role="button">XSS</a>
+      <a class="btn sde" href="/sde" role="button">Sensitive Data Exposure</a>
+    </div>
+  </div>
+</body>
+</html>
